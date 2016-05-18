@@ -19,6 +19,7 @@ public class VelocityUtil {
 	@Test
 	public void generate() {
 		try {
+			//注意配置velocity.properties中的模板路径
 			Velocity.init("src/main/resources/velocity.properties");
 			VelocityContext velocityContext = new VelocityContext();
 			// 简单字符串
