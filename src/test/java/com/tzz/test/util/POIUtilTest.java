@@ -34,7 +34,7 @@ public class POIUtilTest {
 	}
 	@Test
 	public void testWrite(){
-		String readPath2007 = "d:\\1.xlsx";
+		String readPath2007 = "d:\\2.xls";
 		try {
 			Map<String, List<String>> maps = POIUtil.read(readPath2007);
 			
