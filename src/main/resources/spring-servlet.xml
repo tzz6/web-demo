@@ -53,6 +53,7 @@
 					    <value>/login</value>
 					    <value>/verifyCodeServlet</value>
 					    <value>/index</value>
+					    <value>/webcam</value>
 					</list>
 				</property>
 			</bean>
