@@ -28,5 +28,6 @@
 <div class="index_div"><a class="index_a" href="${ctx }/freemarker/list">Freemarker</a></div>
 <div class="index_div"><a class="index_a" href="${ctx }/pdf/index">PDF管理工具</a></div>
 <div class="index_div"><a class="index_a" href="${ctx }/tags">自定义标签</a></div>
+<div class="index_div"><a class="index_a" href="${ctx }/webcam/photograph">拍照</a></div>
 </body>
 </html>
