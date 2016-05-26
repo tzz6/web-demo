@@ -4,6 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.OutputStream;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.imageio.ImageIO;
@@ -16,6 +17,8 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.tzz.util.FileUtil;
 
@@ -107,5 +110,34 @@ public class WebcamController extends BaseController {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+
+	/**
+	 * RCP客户端上传拍照图片
+	 */
+	@RequestMapping(value = "/phototaking/uploadImage", method = RequestMethod.POST)
+	public void uploadImage(HttpServletRequest request, HttpServletResponse response) {
+		try {
+			String ext = request.getParameter("ext");
+			MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) request;
+			Map<String, MultipartFile> fileMap = multipartRequest.getFileMap();
+			for (Map.Entry<String, MultipartFile> entity : fileMap.entrySet()) {
+				MultipartFile file = entity.getValue();
+				if (!file.isEmpty()) {
+					String savePath = FileUtil.getPath(request, FileUtil.IMAGE_DIR);
+					// 得到文件保存的名称
+					String filename = FileUtil.makeFileName(ext);
+					// 得到文件的保存目录
+					String realSavePath = FileUtil.makePath(filename, savePath);
+					savePath = realSavePath + filename;
+					file.transferTo(new File(savePath));
+					responseResult("<Response><success>true</success><reason>true</reason></Response>");
+				}
+			}
+		} catch (Exception e) {
+			log.error("WsmController@uploadImage", e);
+			responseResult("<Response><success>false</success><reason>系统异常！原因：" + e.getMessage() + "</reason></Response>");
+		}
 	}
 }

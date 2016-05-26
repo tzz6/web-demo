@@ -6,11 +6,14 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -43,6 +46,26 @@ public class BaseController {
 //		    jsonGenerator.war
 			response.getWriter().print(objectMapper.writeValueAsString(map));
 		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	protected HttpServletRequest request;
+	protected HttpServletResponse response;
+	protected HttpSession session;
+	
+	@ModelAttribute
+	public void setRequestAndResponse(HttpServletRequest request, HttpServletResponse response) {
+		this.request = request;
+		this.response = response;
+		this.session = request.getSession(true);
+	}
+
+	public void responseResult(Object result){
+		try {
+			response.setContentType("text/html;charset=utf-8");
+			response.getWriter().print(result);
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
