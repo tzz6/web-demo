@@ -47,6 +47,25 @@ public class MD5SHACryptoUtil {
 		return rs;
 	}
 	
+	/**SHA512加密*/
+	public static String sha512Encrypt(String date) {
+		byte[] digest = null;
+		String rs = null;
+		try {
+			// 得到一个SHA-1的消息摘要
+			MessageDigest messageDigest = MessageDigest.getInstance("SHA-512");
+			// 添加要进行计算摘要的信息
+			messageDigest.update(date.getBytes());
+			// 得到该摘要
+			digest = messageDigest.digest();
+			// 将摘要转为字符串
+			rs = byte2Hex(digest);
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return rs;
+	}
+	
 	// 1.把密文转换成十六进制的字符串形式（Integer.toHexString函数）
 	public static String byte2Hex(byte[] b) {
 		StringBuffer sb = new StringBuffer();
@@ -104,6 +123,21 @@ public class MD5SHACryptoUtil {
 	public void test() {
 		System.out.println(md5Encrypt("123456"));
 		System.out.println(shaEncrypt("123456"));
+	}
+	
+	@Test
+	public void testMd5Encrypt() {
+		System.out.println(md5Encrypt("123456"));
+	}
+	@Test
+	public void testSha512Encrypt() {
+		String str1 = sha512Encrypt("123456");
+		String str3 = sha512Encrypt("14e1b600b1fd579f47433b88e8d85291");
+		String str2 = "ddaf35a193617abacc417349ae20413112e6fa4e89a97ea20a9eeee64b55d39a2192992a274fc1a836ba3c23a3feebbd454d4423643ce80e2a9ac94fa54ca49f";
+		System.out.println(str1);
+		System.out.println(str3);
+		System.out.println(str2);
+		System.out.println(str1.equals(str2));
 	}
 }
 
