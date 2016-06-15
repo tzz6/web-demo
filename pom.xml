@@ -443,6 +443,22 @@
 			<artifactId>webcam-capture</artifactId>
 			<version>0.3.11</version>
 		</dependency>
+		
+		<!-- netty -->
+		<dependency>
+		    <groupId>io.netty</groupId>
+		    <artifactId>netty-all</artifactId>
+		    <version>5.0.0.Alpha2</version>
+		</dependency>
+		
+		<!-- protobuf -->
+		<dependency>
+		    <groupId>com.google.protobuf</groupId>
+		    <artifactId>protobuf-java</artifactId>
+		    <version>3.0.0-beta-2</version>
+		</dependency>
+				
+		
 	</dependencies>
 
 	<build>
