@@ -47,15 +47,12 @@ public class TimeServerHandler extends ChannelHandlerAdapter {
 			MsgHandleService.userList.put(ctx.channel().id().toString(), userBean.build());
 
 			// 群发送好友列表
-			MsgHandleService.channelGroup
-					.writeAndFlush(msgAgree.doGetChatFriendsListInfoPacket(MsgHandleService.userList.values()));
-
+			MsgHandleService.channelGroup.writeAndFlush(msgAgree.doGetChatFriendsListInfoPacket(MsgHandleService.userList.values()));
+			
 			break;
 		case InformationPacket.MsgEnum.ChatOneToOne_VALUE:
-			// 1v1
 			break;
 		case InformationPacket.MsgEnum.ChatOneToAll_VALUE:
-			// 1vn
 			MsgHandleService.channelGroup.writeAndFlush(group);
 			break;
 		default:

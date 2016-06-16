@@ -38,12 +38,13 @@ public class NettyServer {
 	/**启动NettyServer 服务端*/
 	public static void main(String[] args) {
 		int port = 7397;
-		NettyServer ns = new NettyServer();
+		NettyServer nettyServer = null;
 		try {
-			ns.bing(port);
+			nettyServer = new NettyServer();
+			nettyServer.bing(port);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-
+	
 }
