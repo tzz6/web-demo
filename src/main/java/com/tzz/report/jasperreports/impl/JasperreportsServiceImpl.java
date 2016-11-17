@@ -10,6 +10,7 @@ import java.util.Map;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Service;
 
 import com.tzz.report.jasperreports.JasperreportsService;
 import com.tzz.report.util.ServiceConstants;
@@ -30,6 +31,7 @@ import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
  * Jasperreports服务
  *
  */
+@Service(value = "jasperreportsService")
 public class JasperreportsServiceImpl implements JasperreportsService {
 	protected static final Logger LOGGER = Logger.getLogger(JasperreportsServiceImpl.class.getName());
 

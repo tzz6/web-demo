@@ -8,20 +8,25 @@ public class DateUtil {
 	private final static String yyyyMMdd = "yyyyMMdd";
 	private final static String yyyyMMddHHmmss = "yyyyMMddHHmmss";
 	private final static String yyyyMMddHHmmssSSS = "yyyyMMddHHmmssSSS";
-	
-	public static String getDateyyyyMMdd(){
+
+	public static String getDateyyyyMMdd() {
 		SimpleDateFormat format = new SimpleDateFormat(yyyyMMdd);
 		return format.format(new Date());
 	}
-	
-	public static String getDateyyyyMMddHHmmss(){
+
+	public static String getDateyyyyMMddHHmmss() {
 		SimpleDateFormat format = new SimpleDateFormat(yyyyMMddHHmmss);
 		return format.format(new Date());
 	}
-	
-	public static String getDateyyyyMMddHHmmssSSS(){
+
+	public static String getDateyyyyMMddHHmmssSSS() {
 		SimpleDateFormat format = new SimpleDateFormat(yyyyMMddHHmmssSSS);
 		return format.format(new Date());
 	}
-	
+
+	public static String getCurrDate(String pattern) {
+		SimpleDateFormat format = new SimpleDateFormat(pattern);
+		return format.format(new Date());
+	}
+
 }

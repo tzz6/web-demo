@@ -17,9 +17,9 @@ import javax.crypto.SecretKey;
 import javax.crypto.interfaces.DHPrivateKey;
 import javax.crypto.interfaces.DHPublicKey;
 import javax.crypto.spec.DHParameterSpec;
+
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
-import org.junit.Test;
 
 
 public class DHUtil {
@@ -156,46 +156,6 @@ public class DHUtil {
 	public String getPublicKey(Map<String, Object> keyMap) throws Exception {
 		Key key = (Key) keyMap.get(PUBLIC_KEY);
 		return encryptBASE64(key.getEncoded());
-	}
-	
-	@Test
-	public void testDH() throws Exception {
-		// 生成甲方密钥对儿
-		Map<String, Object> aKeyMap = initKey();
-		String aPublicKey = getPublicKey(aKeyMap);
-		String aPrivateKey = getPrivateKey(aKeyMap);
-		System.out.println("甲方公钥:\r" + aPublicKey);
-		System.out.println("甲方私钥:\r" + aPrivateKey);
-		
-		// 由甲方公钥产生本地密钥对儿
-		Map<String, Object> bKeyMap = initKey(aPublicKey);
-		String bPublicKey = getPublicKey(bKeyMap);
-		String bPrivateKey = getPrivateKey(bKeyMap);
-		System.out.println("乙方公钥:\r" + bPublicKey);
-		System.out.println("乙方私钥:\r" + bPrivateKey);
-		
-		String aInput = "abcdef ";
-		System.out.println("原文: " + aInput);
-
-		// 由甲方公钥，乙方私钥构建密文
-		byte[] aCode = encrypt(aInput.getBytes(), aPublicKey, bPrivateKey);
-
-		// 由乙方公钥，甲方私钥解密
-		byte[] aDecode = decrypt(aCode, bPublicKey, aPrivateKey);
-		String aOutput = (new String(aDecode));
-		System.out.println("解密: " + aOutput);
-
-		/**反过来加密解密*/
-		String bInput = "123456 ";
-		System.out.println("原文: " + bInput);
-
-		// 由乙方公钥，甲方私钥构建密文
-		byte[] bCode = encrypt(bInput.getBytes(), bPublicKey, aPrivateKey);
-
-		// 由甲方公钥，乙方私钥解密
-		byte[] bDecode = decrypt(bCode, aPublicKey, bPrivateKey);
-		String bOutput = (new String(bDecode));
-		System.out.println("解密: " + bOutput);
 	}
 
 }

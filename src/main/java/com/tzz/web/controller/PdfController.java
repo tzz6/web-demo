@@ -11,13 +11,13 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.tzz.freemarker.HtmlGenerator;
 import com.tzz.report.jasperreports.JasperreportsService;
-import com.tzz.report.jasperreports.impl.JasperreportsServiceImpl;
 import com.tzz.util.DateUtil;
 import com.tzz.util.FileUtil;
 import com.tzz.util.pdf.PDFBoxUtils;
@@ -26,6 +26,9 @@ import com.tzz.util.pdf.PDFUtil;
 @Controller
 @RequestMapping("/pdf")
 public class PdfController extends BaseController {
+	
+	@Autowired
+	private JasperreportsService jasperreportsService;
 
 	/** 首页 */
 	@RequestMapping(value = "/index", method = RequestMethod.GET)
@@ -141,9 +144,8 @@ public class PdfController extends BaseController {
 		// 得到文件的保存目录
 		String realSavePath = FileUtil.makePath(filename, savePath);
 
-		JasperreportsService hessianTagService = new JasperreportsServiceImpl();
 		List<Map<String, Object>> invoiceData = getInvoicePrintDataList();
-		savePath = hessianTagService.createPdf(invoiceData, realSavePath, filename);
+		savePath = jasperreportsService.createPdf(invoiceData, realSavePath, filename);
 		FileUtil.downloadFile(response, filename, savePath);
 	}
 

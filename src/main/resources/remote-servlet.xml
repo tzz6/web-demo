@@ -23,4 +23,9 @@
         <property name="service" ref="hsUserService" />  
         <property name="serviceInterface" value="com.tzz.hessian.service.HsUserService" />  
     </bean>  
+	<!-- jasperreports生成PDF服务 -->
+    <bean name="/jasperreportsService" class="org.springframework.remoting.caucho.HessianServiceExporter">  
+        <property name="service" ref="jasperreportsService" />  
+        <property name="serviceInterface" value="com.tzz.report.jasperreports.JasperreportsService" />  
+    </bean>  
 </beans>

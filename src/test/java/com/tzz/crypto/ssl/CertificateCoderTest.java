@@ -38,4 +38,3 @@ public class CertificateCoderTest {
 		conn.disconnect();
 	}
 }
-

@@ -2,8 +2,6 @@ package com.tzz.crypto.simple;
 
 import java.io.IOException;
 
-import org.junit.Test;
-
 import sun.misc.BASE64Decoder;
 import sun.misc.BASE64Encoder;
 
@@ -21,12 +19,5 @@ public class BASE64Util {
 			e.printStackTrace();
 		}
 		return null;
-	}
-	
-	@Test
-	public void test() {
-		String encryptStr = encrypt("123456".getBytes());
-		System.out.println("加密："+encryptStr);
-		System.out.println("解密："+decrypt(encryptStr));
 	}
 }

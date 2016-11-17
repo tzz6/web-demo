@@ -149,13 +149,13 @@
 		<url-pattern>/verifyCodeServlet</url-pattern>
 	</servlet-mapping>
 
-	<!-- 自定义标签 -->
+	<!-- 自定义标签(可以省略该配置不影响正常使用)
 	<jsp-config>
         <taglib>
             <taglib-uri>http://www.web-demo.com</taglib-uri>
             <taglib-location>/WEB-INF/ImgTags.tld</taglib-location>
         </taglib>
-    </jsp-config>
+    </jsp-config> -->
 
 	<servlet-mapping>
 		<servlet-name>default</servlet-name>

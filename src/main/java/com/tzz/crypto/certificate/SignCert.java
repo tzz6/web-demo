@@ -5,8 +5,6 @@ import java.security.*;
 import java.security.cert.*;
 import java.util.*;
 
-import org.junit.Test;
-
 import sun.security.x509.*;
 
 public class SignCert {
@@ -24,7 +22,6 @@ public class SignCert {
 	private X509CertInfo mSignedCertInfo = null;// 被签证书信息
 
 	/** 证书签名*/
-	@Test
 	public void sign() {
 		try {
 			getSignCertInfo(); // 获取签名证书信息
