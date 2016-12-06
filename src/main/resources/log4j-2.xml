@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+	<!-- ======================================================================================================== -->
+	<!-- ======================================================================================================== -->
+	<!-- ==========================引入log4j-extras 包 log4j xml 自定义输出格式说明================================ -->
+	<!-- ======================================================================================================== -->
+	<!-- ======================================================================================================== -->
+	<!-- 输出到控制台中 -->
+	<appender name="console" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[web-demo][%p] [%-d{yyyy-MM-dd HH:mm:ss}] %C.%M(%L) | %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="rollingFile" class="org.apache.log4j.rolling.RollingFileAppender">
+		<file>./logs/web_demo.log</file>
+		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+			<param name="FileNamePattern" value="../logs/web_demo.%d{yyyyMMdd}.log" />
+		</rollingPolicy>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[web-demo][%p] [%-d{yyyy-MM-dd HH:mm:ss}] %C.%M(%L) | %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="errorLog" class="org.apache.log4j.rolling.RollingFileAppender">
+		<file>./logs/web_demo_error.log</file>
+		
+		<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+			<param name="FileNamePattern" value="../logs/web_demo_error.%d{yyyyMMdd}.log" />
+		</rollingPolicy>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="[web-demo][%p] [%-d{yyyy-MM-dd HH:mm:ss}] %C.%M(%L) | %m%n" />
+		</layout>
+	</appender>
+
+	<logger name="error_log" additivity="false">
+		<level value="debug" />
+		<appender-ref ref="errorLog" />
+	</logger>
+
+	<root>
+		<!-- 优先级 -->
+<!--         <priority value="debug" /> -->
+		<appender-ref ref="console" />
+		<appender-ref ref="rollingFile" />
+<!-- 		<appender-ref ref="file" /> -->
+    </root>
+</log4j:configuration>  
