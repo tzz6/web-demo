@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
-import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -80,7 +79,7 @@ public class JsonMapper {
 	 * @see #fromJson(String, JavaType)
 	 */
 	public <T> T fromJson(String jsonString, Class<T> clazz) {
-		if (StringUtils.isEmpty(jsonString)) {
+		if (jsonString != null && jsonString.length() > 0) {
 			return null;
 		}
 
@@ -93,7 +92,7 @@ public class JsonMapper {
 	}
 
 	public <T> T fromJsonClass(String jsonString, Class<T> clazz) {
-		if (StringUtils.isEmpty(jsonString)) {
+		if (jsonString != null && jsonString.length() > 0) {
 			return null;
 		}
 
@@ -113,7 +112,7 @@ public class JsonMapper {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T> T fromJson(String jsonString, JavaType javaType) {
-		if (StringUtils.isEmpty(jsonString)) {
+		if (jsonString != null && jsonString.length() > 0) {
 			return null;
 		}
 

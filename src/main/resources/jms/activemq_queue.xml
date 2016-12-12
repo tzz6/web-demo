@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans-4.1.xsd 
+		http://www.springframework.org/schema/context 
+		http://www.springframework.org/schema/context/spring-context-4.1.xsd 
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.1.xsd
+		http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop-4.1.xsd">
+	
+	<!-- 扫描service自动注入为bean -->
+	<context:component-scan base-package="com.tzz.jms.activemq" />
+	
+	<!-- **********************************************模式1.Queue点对点模式**********************************************   -->
+	<!-- ActiveMQ -->
+	<!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供-->
+    <bean id="targetConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="tcp://localhost:61616"/>
+    </bean>
+    <bean id="pooledConnectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory">
+        <property name="connectionFactory" ref="targetConnectionFactory"/>
+        <property name="maxConnections" value="10"/>
+    </bean>
+    <bean id="connectionFactory" class="org.springframework.jms.connection.SingleConnectionFactory">
+        <property name="targetConnectionFactory" ref="pooledConnectionFactory"/>
+    </bean>
+    
+    <!-- 消息转换器   -->  
+	<bean id="jsonMessageConverter" class="com.tzz.jms.activemq.converter.JsonMessageConverter"/>
+
+	<!-- Spring提供的JMS工具类，它可以进行消息发送、接收等 -->
+	<bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
+		<!-- 这个connectionFactory对应的是我们定义的Spring提供的那个ConnectionFactory对象 -->
+		<property name="connectionFactory" ref="connectionFactory" />
+		<!-- 消息转换器 -->  
+    	<property name="messageConverter" ref="jsonMessageConverter"/>  
+	</bean>
+	
+	<!-- 消息队列的目的地   -->
+	<bean id="destination_1" class="org.apache.activemq.command.ActiveMQQueue">
+		<constructor-arg>
+			<value>queue_1</value>
+		</constructor-arg>
+	</bean>
+	
+	<!-- *********activemq_queue_listener_1******监听器1.MessageListener***********************   -->
+    
+	<!-- *********activemq_queue_listener_2******监听器2.SessionAwareMessageListener***********************   -->
+    
+	<!-- *********activemq_queue_listener_3******监听器3.SessionAwareMessageListener***********************   -->
+</beans>

@@ -1,4 +1,4 @@
-package com.tzz.test.activemq;
+package com.tzz.test.jms.activemq;
 
 public class UserBean {
 

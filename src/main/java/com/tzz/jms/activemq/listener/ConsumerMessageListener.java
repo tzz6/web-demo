@@ -19,6 +19,7 @@ public class ConsumerMessageListener implements MessageListener {
 
 	protected final transient Logger log = Logger.getLogger(LogAppender.JMS);
 	
+	//消息转换器
 	private MessageConverter messageConverter;
 
 	public void setMessageConverter(MessageConverter messageConverter) {
@@ -30,12 +31,11 @@ public class ConsumerMessageListener implements MessageListener {
 	}
 
 	public void onMessage(Message message) {
-		// 这里我们知道生产者发送的就是一个纯文本消息，所以这里可以直接进行强制转换
 		if (message instanceof TextMessage) {
 			TextMessage textMsg = (TextMessage) message;
 			try {
 				Object object = messageConverter.fromMessage(textMsg);
-				log.info("\n\t接收到消息：" + object);
+				log.info("\n\t接收到message：" + object + "....监听器1 MessageListener");
 			} catch (JMSException e) {
 				e.printStackTrace();
 			}
