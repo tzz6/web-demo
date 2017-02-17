@@ -24,11 +24,11 @@ import com.tzz.jms.activemq.service.ProducerService;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 /** 测试监听器1 */
-//@ContextConfiguration(value = { "/jms/activemq_queue.xml", "/jms/activemq_queue_listener_1.xml" })
+@ContextConfiguration(value = { "/jms/activemq_queue.xml", "/jms/activemq_queue_listener_1.xml" })
 /** 测试监听器2 */
 //@ContextConfiguration(value = { "/jms/activemq_queue.xml", "/jms/activemq_queue_listener_2.xml" })
 /** 测试监听器3 */
-@ContextConfiguration(value = { "/jms/activemq_queue.xml", "/jms/activemq_queue_listener_4.xml" })
+//@ContextConfiguration(value = { "/jms/activemq_queue.xml", "/jms/activemq_queue_listener_4.xml" })
 public class ProducerServiceImplTest {
 
 	@Resource(name = "producerService")
