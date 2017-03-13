@@ -43,7 +43,7 @@
 
 	<!-- 配置hibernate的SessionFactory -->
 	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
 		<!-- 注入数据源 相关信息看源码 -->
 		<property name="dataSource" ref="dataSource" />
 		<!-- hibernate配置信息 -->
@@ -70,7 +70,7 @@
 
 	<!-- 配置事务管理器 -->
 	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 <!-- 声明使用注解式事务 <tx:annotation-driven transaction-manager="transactionManager"/> -->
