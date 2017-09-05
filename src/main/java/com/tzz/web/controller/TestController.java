@@ -1,5 +1,6 @@
 package com.tzz.web.controller;
 
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
@@ -64,5 +65,31 @@ public class TestController {
 			e.printStackTrace();
 		}
 		return maps;
+	}
+	
+	@RequestMapping(value = "/send/json", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> sendPostJson(HttpServletRequest request) {
+		try {
+			StringBuffer str = new StringBuffer();
+			BufferedInputStream in = new BufferedInputStream(request.getInputStream());
+			int i;
+			char c;
+			while ((i = in.read()) != -1) {
+				c = (char) i;
+				str.append(c);
+			}
+			System.out.println(str.toString());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		Map<String, Object> userMap = new HashMap<String, Object>();
+		// System.out.println(agentChoose.toString());
+		// System.out.println(name);
+		userMap.put("serviceName", "676123");
+		userMap.put("serviceFullName", "00001");
+		userMap.put("errorCode", "00001x");
+		userMap.put("errorMessage", "000012");
+		return userMap;
 	}
 }

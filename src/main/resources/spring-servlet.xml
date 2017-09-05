@@ -54,6 +54,7 @@
 					    <value>/verifyCodeServlet</value>
 					    <value>/index</value>
 					    <value>/webcam</value>
+					    <value>/test</value>
 					</list>
 				</property>
 			</bean>

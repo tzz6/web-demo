@@ -36,7 +36,12 @@ public class ProducerServiceImplTestTopic {
 	private JmsTemplate jmsTemplateTopic;
 	@Test
 	public void testSendTopic() {
-		producerService.sendMessage(jmsTemplateTopic, topicDestination,
-				"测试消息发送--" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
+		try {
+			producerService.sendMessage(jmsTemplateTopic, topicDestination,
+					"测试消息发送--" + new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()));
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
