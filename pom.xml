@@ -67,7 +67,7 @@
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-test</artifactId>
 			<version>${spring.version}</version>
-			<scope>test</scope>
+<!-- 			<scope>test</scope> -->
 		</dependency>
 		
 		<dependency>
@@ -195,11 +195,11 @@
 			<version>1.2</version>
 		</dependency>
 		
-<!-- 		<dependency> -->
-<!-- 			<groupId>javax.servlet.jsp</groupId> -->
-<!-- 		    <artifactId>jsp-api</artifactId> -->
-<!-- 		    <version>2.1</version> -->
-<!-- 		</dependency> -->
+		<dependency>
+			<groupId>javax.servlet.jsp</groupId>
+		    <artifactId>jsp-api</artifactId>
+		    <version>2.1</version>
+		</dependency>
 
 		<!--cxf -->
 		<dependency>  
